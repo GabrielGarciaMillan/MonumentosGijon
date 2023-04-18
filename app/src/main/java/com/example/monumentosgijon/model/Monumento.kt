@@ -1,4 +1,6 @@
 import androidx.recyclerview.widget.DiffUtil
+import androidx.room.Entity
+import com.squareup.moshi.Json
 
 /*
 Copyright (c) 2023 Kotlin Data Classes Generated from JSON powered by http://www.json2kotlin.com
@@ -11,41 +13,45 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 For support, please feel free to contact me at https://www.linkedin.com/in/syedabsar */
 
-
+@Entity(tableName = "monumento_table")
 data class Monumento (
 
-	val titulo : String,
-	val correo_electronico : String,
-	val codigo_postal : Int,
-	val descripcion : String,
-	val direccion : String,
-	val distrito : String,
-	val facebook : String,
-	val googleplus : String,
-	val instagram : String,
-	val linkedin : String,
-	val pinterest : String,
-	val twitter : String,
-	val youtube : String,
-	val fax : String,
-	val horario : String,
-	val imagen : String,
-	val kml : String,
-	val localizacion : String,
-	val lineas_bus : String,
-	val materias : String,
-	val municipio : String,
-	val observaciones : String,
-	val pluscode : String,
-	val provincia : String,
-	val telefono : String,
-	val web : String,
-	val idioma : String,
-	val preguntas_frecuentes : String,
-	val etiquetas : String
+	val titulo : String = "",
+	val correo_electronico : String = "",
+	val codigo_postal : String = "",
+	val descripcion : String = "",
+	val direccion : String = "",
+	val distrito : String = "",
+	val facebook : String = "",
+	val googleplus : String = "",
+	val instagram : String = "",
+	val linkedin : String = "",
+	val pinterest : String = "",
+	val twitter : String = "",
+	val youtube : String = "",
+	val fax : String = "",
+	val horario : String = "",
+	val imagen : String = "",
+	val kml : String = "",
+	val localizacion : String = "",
+	val lineas_bus : String = "",
+	val materias : String = "",
+	val municipio : String = "",
+	val observaciones : String = "",
+	val pluscode : String = "",
+	val provincia : String = "",
+	val telefono : String = "",
+	val web : String = "",
+	val idioma : String = "",
+	val preguntas_frecuentes : String ="",
+	val etiquetas : String = ""
 
 
 ){
+
+	@Json(ignore = true)
+	val idlineaInt get() = codigo_postal.toDouble().toInt()
+
 	companion object DIFF_CALLBACK: DiffUtil.ItemCallback<Monumento>() {
 		override fun areItemsTheSame(oldItem: Monumento, newItem: Monumento): Boolean {
 			return oldItem.equals(newItem);

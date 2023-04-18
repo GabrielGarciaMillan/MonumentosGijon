@@ -10,7 +10,7 @@ class MonumentosListAdapter : ListAdapter<Monumento, MonumentosViewHolder>(Monum
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MonumentosViewHolder {
         val itemBinding = SimpleListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return MonumentosViewHolder(itemBinding)
+        return MonumentosViewHolder(itemBinding.root)
     }
 
     override fun onBindViewHolder(holder: MonumentosViewHolder, position: Int) {

@@ -13,9 +13,9 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private lateinit var monumentosListAdapter: MonumentosListAdapter
+    private var monumentosListAdapter: MonumentosListAdapter = MonumentosListAdapter()
 
-    private lateinit var monumentosViewModel: MonumentosViewModel
+    private var monumentosViewModel: MonumentosViewModel = MonumentosViewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,17 +24,18 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        binding.recyclerview.layoutManager = LinearLayoutManager(this)
-        binding.recyclerview.adapter = monumentosListAdapter
+        binding.recyclerView.layoutManager = LinearLayoutManager(this)
+        binding.recyclerView.adapter = monumentosListAdapter
 
 
         monumentosViewModel.monumentosUIStateObservable.observe(this) { result ->
             when (result) {
                 is MonumentosUIState.Success -> {
-                    //monumentosListAdapter.submitList(result.datos)
+                   monumentosListAdapter.submitList(result.datos)
                 }
                 is MonumentosUIState.Error -> {
-
+                    val snack = Snackbar.make(binding.root,result.message,Snackbar.LENGTH_LONG)
+                    snack.show()
                 }
             }
         }
