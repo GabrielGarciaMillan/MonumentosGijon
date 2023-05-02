@@ -1,6 +1,6 @@
 package com.example.monumentosgijon.network
 
-import Monumento
+import com.example.monumentosgijon.model.Monumento
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.JsonReader
 import com.squareup.moshi.JsonWriter

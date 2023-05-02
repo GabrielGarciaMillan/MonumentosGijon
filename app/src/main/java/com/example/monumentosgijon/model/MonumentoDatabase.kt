@@ -1,6 +1,5 @@
 package com.example.monumentosgijon.model
 
-import Monumento
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
@@ -36,7 +35,7 @@ abstract class MonumentoDatabase: RoomDatabase() {
             INSTANCE = null
         }
 
-        private val CALLBACK = object : RoomDatabase.Callback() {
+        private val CALLBACK = object : Callback() {
             override fun onCreate(db: SupportSQLiteDatabase) {
                 super.onCreate(db)
                 CoroutineScope(Dispatchers.IO).launch {

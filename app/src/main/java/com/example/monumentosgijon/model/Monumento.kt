@@ -1,5 +1,9 @@
+package com.example.monumentosgijon.model
+
+
 import androidx.recyclerview.widget.DiffUtil
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
 
 /*
@@ -16,7 +20,7 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 @Entity(tableName = "monumento_table")
 data class Monumento (
 
-	val titulo : String = "",
+	@PrimaryKey val titulo : String = "",
 	val correo_electronico : String = "",
 	val codigo_postal : String = "",
 	val descripcion : String = "",
@@ -54,12 +58,12 @@ data class Monumento (
 
 	companion object DIFF_CALLBACK: DiffUtil.ItemCallback<Monumento>() {
 		override fun areItemsTheSame(oldItem: Monumento, newItem: Monumento): Boolean {
-			return oldItem.equals(newItem);
-		}
+			return oldItem.equals(newItem)
+        }
 
 		override fun areContentsTheSame(oldItem: Monumento, newItem: Monumento): Boolean {
-			return oldItem == newItem;
-		}
+			return oldItem == newItem
+        }
 
 	}
 }

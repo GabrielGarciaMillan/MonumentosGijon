@@ -1,6 +1,6 @@
 package com.example.monumentosgijon.ui
 
-import Monumento
+import  com.example.monumentosgijon.model.Monumento
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.example.monumentosgijon.databinding.SimpleListItemBinding

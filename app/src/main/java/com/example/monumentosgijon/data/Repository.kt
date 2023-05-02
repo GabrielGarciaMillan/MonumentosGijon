@@ -1,6 +1,7 @@
 package com.example.monumentosgijon.data
 
-import Monumento
+
+import com.example.monumentosgijon.model.Monumento
 import com.example.monumentosgijon.model.MonumentoDatabase
 import com.example.monumentosgijon.model.MonumentosDAO
 import com.example.monumentosgijon.network.RestApi

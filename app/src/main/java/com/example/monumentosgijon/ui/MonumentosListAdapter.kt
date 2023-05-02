@@ -1,11 +1,11 @@
 package com.example.monumentosgijon.ui
 
 
-import Monumento
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.example.monumentosgijon.databinding.SimpleListItemBinding
+import com.example.monumentosgijon.model.Monumento
 
 class MonumentosListAdapter : ListAdapter<Monumento, MonumentosViewHolder>(Monumento.DIFF_CALLBACK) {
 

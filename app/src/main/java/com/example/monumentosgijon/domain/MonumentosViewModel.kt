@@ -1,9 +1,8 @@
 package com.example.monumentosgijon.domain
-
-import Monumento
 import androidx.lifecycle.*
 
 import com.example.monumentosgijon.data.Repository
+import com.example.monumentosgijon.model.Monumento
 
 
 class MonumentoViewModel(val repository: Repository): ViewModel() {
