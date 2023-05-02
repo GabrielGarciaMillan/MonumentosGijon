@@ -9,19 +9,15 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
 class Repository (private val monumentosDAO: MonumentosDAO){
-    fun updateMonumentosData() =
+  suspend fun updateMonumentosData() =
         // Se crea un flujo
         flow {
             // Se realiza la petición al servicio
             try {
                 // Respuesta correcta
                 val monumentoStatus = RestApi.retrofitService.getMonumentosInfo()
-                //Comprobar que tenga titulo
-
                 //Añadir a la BD
-
-                // Se emite el estado Succes y se incluyen los datos recibidos
-                emit(ApiResult.Success(monumentoStatus))
+                insertMonumentos(monumentoStatus)
             } catch (e: Exception) {
                 // Error en la red
                 // Se emite el estado de Error con el mensaje que lo explica
@@ -31,4 +27,6 @@ class Repository (private val monumentosDAO: MonumentosDAO){
         }.flowOn(Dispatchers.IO)
 
     suspend fun insertMonumentos(monumentos: List<Monumento>) = monumentosDAO.insertMonumentos(monumentos)
+
+    fun getMonumentos() = monumentosDAO.getMonumentos()
 }

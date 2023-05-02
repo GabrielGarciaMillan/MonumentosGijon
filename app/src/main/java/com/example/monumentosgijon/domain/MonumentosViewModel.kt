@@ -1,33 +1,24 @@
 package com.example.monumentosgijon.domain
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.example.monumentosgijon.data.ApiResult
-import com.example.monumentosgijon.data.Repository.updateMonumentosData
-import com.example.monumentosgijon.ui.MonumentosUIState
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.launch
+import Monumento
+import androidx.lifecycle.*
 
-class MonumentosViewModel : ViewModel() {
+import com.example.monumentosgijon.data.Repository
 
-    private val _monumentosUIStateObservable = MutableLiveData<MonumentosUIState>()
-    val monumentosUIStateObservable: LiveData<MonumentosUIState> get() = _monumentosUIStateObservable
 
-    init {
-        getMonumentosList()
-    }
-    fun getMonumentosList() {
-        viewModelScope.launch {
-            updateMonumentosData().map {
-                when (it) {
-                    is ApiResult.Success -> MonumentosUIState.Success(it.data!!)
-                    is ApiResult.Error -> MonumentosUIState.Error("Error")
-                }
-            }.collect {
-                _monumentosUIStateObservable.value = it
-            }
+class MonumentoViewModel(val repository: Repository): ViewModel() {
+
+    val monumentos: LiveData<List<Monumento>> = repository.getMonumentos().asLiveData()
+
+}
+
+class MonumentoViewModelFactory(private val repository: Repository) :
+    ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(MonumentoViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return MonumentoViewModel(repository) as T
         }
+        throw IllegalArgumentException("Unknown ViewModel class")
     }
 }

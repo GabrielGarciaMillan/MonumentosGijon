@@ -6,6 +6,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.example.monumentosgijon.data.Repository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -38,6 +39,12 @@ abstract class MonumentoDatabase: RoomDatabase() {
         private val CALLBACK = object : RoomDatabase.Callback() {
             override fun onCreate(db: SupportSQLiteDatabase) {
                 super.onCreate(db)
+                CoroutineScope(Dispatchers.IO).launch {
+                    val monumentosDAO = INSTANCE?.monumentosDao()
+                    val repository = Repository(monumentosDAO!!)
+                    repository.updateMonumentosData().collect {
+                    }
+                }
 
             }
         }

@@ -12,6 +12,6 @@ interface MonumentosDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertMonumentos(monumentos:List<Monumento>)
 
-    @Query("SELECT titulo FROM course_table")
-    fun getNames(): Flow<List<String>>
+    @Query("SELECT * FROM monumento_table")
+    fun getMonumentos(): Flow<List<Monumento>>
 }
